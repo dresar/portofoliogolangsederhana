@@ -1,0 +1,67 @@
+{{template "layout.html" .}}
+
+{{define "content"}}
+<!-- Navigation -->
+<nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+            <div class="text-2xl font-bold text-white">
+                <a href="/">Portfolio</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="hover:text-blue-400 transition">Home</a>
+                <a href="/about" class="hover:text-blue-400 transition">About Me</a>
+                <a href="/skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="/experience" class="hover:text-blue-400 transition">Experience</a>
+                <a href="/projects" class="text-blue-400">Projects</a>
+                <a href="/services" class="hover:text-blue-400 transition">Services</a>
+                <a href="/blog" class="hover:text-blue-400 transition">Blog</a>
+                <a href="/contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Projects Section -->
+<section class="min-h-screen pt-32 px-4 pb-20">
+    <div class="container mx-auto max-w-6xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-12 text-center" data-aos="fade-up">Projects</h1>
+        
+        {{if .Projects}}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{range .Projects}}
+            <div class="bg-slate-800 rounded-lg overflow-hidden hover:bg-slate-700 transition" data-aos="fade-up">
+                {{if .ImageURL}}
+                <img src="{{.ImageURL}}" alt="{{.Title}}" class="w-full h-48 object-cover">
+                {{else}}
+                <div class="w-full h-48 bg-slate-700 flex items-center justify-center">
+                    <span class="text-slate-500">No Image</span>
+                </div>
+                {{end}}
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">{{.Title}}</h3>
+                    <p class="text-slate-400 mb-4 text-sm">{{.Description}}</p>
+                    {{if .TechStack}}
+                    <p class="text-xs text-blue-400 mb-4">{{.TechStack}}</p>
+                    {{end}}
+                    <div class="flex space-x-4">
+                        {{if .DemoLink}}
+                        <a href="{{.DemoLink}}" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm">Demo</a>
+                        {{end}}
+                        {{if .GithubLink}}
+                        <a href="{{.GithubLink}}" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm">GitHub</a>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="text-center text-slate-400" data-aos="fade-up">
+            <p>No projects available yet. Check back soon!</p>
+        </div>
+        {{end}}
+    </div>
+</section>
+{{end}}
+

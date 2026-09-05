@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md">
+        <div class="bg-slate-800 p-8 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold mb-6 text-center">Admin Login</h1>
+            
+            {{if .Error}}
+            <div class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-4">
+                {{.Error}}
+            </div>
+            {{end}}
+            
+            <form method="POST" action="/admin/login">
+                <div class="mb-4">
+                    <label class="block mb-2">Password</label>
+                    <input type="password" name="password" required 
+                           class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" 
+                        class="w-full px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

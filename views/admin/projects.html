@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-200">
+    <nav class="bg-slate-800 border-b border-slate-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold">Manage Projects</h1>
+                <div class="space-x-4">
+                    <a href="/admin" class="text-blue-400 hover:text-blue-300">Dashboard</a>
+                    <a href="/admin/logout" class="text-red-400 hover:text-red-300">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold">Projects</h2>
+            <a href="/admin/projects/create" 
+               class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition">
+                Create New Project
+            </a>
+        </div>
+        
+        {{if .Projects}}
+        <div class="bg-slate-800 rounded-lg overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-slate-700">
+                    <tr>
+                        <th class="px-6 py-3 text-left">ID</th>
+                        <th class="px-6 py-3 text-left">Title</th>
+                        <th class="px-6 py-3 text-left">Description</th>
+                        <th class="px-6 py-3 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Projects}}
+                    <tr class="border-t border-slate-700">
+                        <td class="px-6 py-4">{{.ID}}</td>
+                        <td class="px-6 py-4">{{.Title}}</td>
+                        <td class="px-6 py-4 text-sm text-slate-400">{{.Description}}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex space-x-2">
+                                <a href="/admin/projects/{{.ID}}/edit" 
+                                   class="text-blue-400 hover:text-blue-300">Edit</a>
+                                <a href="/admin/projects/{{.ID}}/delete" 
+                                   class="text-red-400 hover:text-red-300"
+                                   onclick="return confirm('Are you sure?')">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+        {{else}}
+        <div class="bg-slate-800 p-8 rounded-lg text-center">
+            <p class="text-slate-400 mb-4">No projects found.</p>
+            <a href="/admin/projects/create" class="text-blue-400 hover:text-blue-300">
+                Create your first project
+            </a>
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>
+

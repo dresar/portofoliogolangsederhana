@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-200">
+    <nav class="bg-slate-800 border-b border-slate-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold">{{.Title}}</h1>
+                <div class="space-x-4">
+                    <a href="/admin/projects" class="text-blue-400 hover:text-blue-300">Back to Projects</a>
+                    <a href="/admin/logout" class="text-red-400 hover:text-red-300">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        {{if .Error}}
+        <div class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded mb-4">
+            {{.Error}}
+        </div>
+        {{end}}
+        
+        <form method="POST" action="{{if .Project.ID}}/admin/projects/{{.Project.ID}}/edit{{else}}/admin/projects/create{{end}}" 
+              class="bg-slate-800 p-8 rounded-lg space-y-6">
+            <div>
+                <label class="block mb-2">Title *</label>
+                <input type="text" name="title" value="{{.Project.Title}}" required
+                       class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div>
+                <label class="block mb-2">Description</label>
+                <textarea name="description" rows="5" required
+                          class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">{{.Project.Description}}</textarea>
+            </div>
+            
+            <div>
+                <label class="block mb-2">Image URL</label>
+                <input type="url" name="image_url" value="{{.Project.ImageURL}}"
+                       class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="https://example.com/image.jpg">
+            </div>
+            
+            <div>
+                <label class="block mb-2">Tech Stack</label>
+                <input type="text" name="tech_stack" value="{{.Project.TechStack}}"
+                       class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="Go, Echo, GORM, SQLite">
+            </div>
+            
+            <div>
+                <label class="block mb-2">Demo Link</label>
+                <input type="url" name="demo_link" value="{{.Project.DemoLink}}"
+                       class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="https://demo.example.com">
+            </div>
+            
+            <div>
+                <label class="block mb-2">GitHub Link</label>
+                <input type="url" name="github_link" value="{{.Project.GithubLink}}"
+                       class="w-full px-4 py-2 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="https://github.com/username/repo">
+            </div>
+            
+            <div class="flex space-x-4">
+                <button type="submit" 
+                        class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition">
+                    {{if .Project.ID}}Update{{else}}Create{{end}} Project
+                </button>
+                <a href="/admin/projects" 
+                   class="px-8 py-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

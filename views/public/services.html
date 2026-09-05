@@ -1,0 +1,47 @@
+{{template "layout.html" .}}
+
+{{define "content"}}
+<!-- Navigation -->
+<nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+            <div class="text-2xl font-bold text-white">
+                <a href="/">Portfolio</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="hover:text-blue-400 transition">Home</a>
+                <a href="/about" class="hover:text-blue-400 transition">About Me</a>
+                <a href="/skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="/experience" class="hover:text-blue-400 transition">Experience</a>
+                <a href="/projects" class="hover:text-blue-400 transition">Projects</a>
+                <a href="/services" class="text-blue-400">Services</a>
+                <a href="/blog" class="hover:text-blue-400 transition">Blog</a>
+                <a href="/contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Services Section -->
+<section class="min-h-screen pt-32 px-4">
+    <div class="container mx-auto max-w-6xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-12 text-center" data-aos="fade-up">Services</h1>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-xl font-bold mb-4">Web Development</h3>
+                <p class="text-slate-300">Custom web applications built with modern technologies.</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-bold mb-4">API Development</h3>
+                <p class="text-slate-300">RESTful APIs and microservices architecture.</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-xl font-bold mb-4">Consulting</h3>
+                <p class="text-slate-300">Technical consulting and code reviews.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
+
